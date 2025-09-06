@@ -1,0 +1,224 @@
+
+
+
+<!DOCTYPE html>
+<!-- saved from url=(0033)file:///D:/shahkj.html#admissions -->
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Falcon English High School</title>
+  <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin="">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;600;800&amp;display=swap" rel="stylesheet">
+  <style>
+    /* Basic reset */
+    *{box-sizing:border-box;margin:0;padding:0}
+    html,body{height:100%}
+    body{
+      font-family: 'Montserrat', system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
+      color:#fff;
+      overflow:hidden;
+      background:#071029; /* fallback */
+    }
+
+    /* Fullscreen container */
+    .hero{
+      position:relative;
+      width:100%;
+      height:100vh;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      text-align:center;
+      padding:2rem;
+    }
+
+    /* Canvas covers full background */
+    canvas#bg{
+      position:absolute;inset:0;width:100%;height:100%;display:block;z-index:0
+    }
+
+    /* Content card */
+    .card{
+      position:relative;z-index:5;max-width:1100px;width:100%;padding:2.5rem;border-radius:16px;
+      backdrop-filter: blur(6px) saturate(120%);
+      background: linear-gradient(135deg, rgba(255,255,255,0.04), rgba(255,255,255,0.02));
+      box-shadow: 0 10px 40px rgba(2,6,23,0.6);
+    }
+
+    .logo{
+      width:86px;height:86px;border-radius:50%;display:inline-grid;place-items:center;margin:0 auto 1rem;
+      background:linear-gradient(135deg,#0ea5a8,#7c3aed);font-weight:800;font-size:28px;color:#fff
+    }
+
+    h1{
+      font-size:clamp(1.6rem, 3.6vw, 3rem);
+      letter-spacing:1px;margin-bottom:0.6rem;
+      text-transform:uppercase;
+    }
+    p.lead{margin-bottom:1rem;font-weight:300;opacity:0.95}
+
+    /* Welcome animated text */
+    .welcome-wrap{display:flex;flex-direction:column;gap:0.6rem;align-items:center}
+
+    .welcome-badge{
+      display:inline-block;padding:0.45rem 0.9rem;border-radius:999px;font-weight:700;
+      background:linear-gradient(90deg, rgba(255,255,255,0.08), rgba(255,255,255,0.03));
+      border:1px solid rgba(255,255,255,0.06);backdrop-filter: blur(4px);
+      transform: translateY(18px);opacity:0;animation:slideIn 700ms cubic-bezier(.2,.9,.3,1) 350ms forwards;
+    }
+
+    @keyframes slideIn{to{transform:none;opacity:1}}
+
+    .typing {
+      margin-top:0.4rem;white-space:nowrap;overflow:hidden;border-right:.12em solid rgba(255,255,255,0.7);
+      width:0;animation:typing 3s steps(28,end) 800ms forwards, blink .8s step-end infinite;
+      font-weight:600;font-size:clamp(1rem,2.6vw,1.4rem)
+    }
+    @keyframes typing{from{width:0}to{width:22ch}}
+    @keyframes blink{50%{border-color:transparent}}
+
+    /* CTA */
+    .cta{margin-top:1.2rem;display:flex;gap:1rem;justify-content:center}
+    .btn{padding:0.7rem 1.15rem;border-radius:10px;font-weight:700;border:0;cursor:pointer}
+    .btn-primary{background:linear-gradient(90deg,#2563eb,#7c3aed);color:#fff}
+    .btn-outline{background:transparent;border:1px solid rgba(255,255,255,0.12);color:#fff}
+
+    /* small credits */
+    .credits{margin-top:1.1rem;font-size:.8rem;opacity:.75}
+
+    /* Responsive tweaks */
+    @media (max-width:520px){
+      .card{padding:1.6rem;border-radius:12px}
+      .logo{width:70px;height:70px;font-size:22px}
+   
+  </style>
+</head>
+<body>
+  <section class="hero">
+    <canvas id="bg" width="1152" height="721"></canvas>
+  <div class="card" role="main" aria-labelledby="main-title">
+      <div class="logo" aria-hidden="true"="orange"><font color="orange"> Falcon</font></div>
+
+      <div class="welcome-wrap">
+<div class="welcome-badge"><font color="white"font size="7"font face="Palace Script MT">Welcome to</font></div>
+
+        <h1><font color="orange"font face="Bold Oblique"FINT SIZE="6">Falcon English High School</font></h1>
+        <p class="lead">Nurturing young minds with knowledge, character and confidence.</p>
+        <div class="typing" id="typed" style="transition: opacity 0.5s ease 0s; opacity: 1;">Falcon English High School</div>
+
+        <div class="cta">
+          <a href="https://youtu.be/bfXd2FuGaQY"><button class="btn btn-primary" onclick="location.href=&#39;#about&#39;">About Us</button></a>
+          <a href="shahk.html"><button class="btn btn-line" onclick="location.href=shahk.html;">Admissions</button><a>
+        </div>
+
+        <div class="credits">Morning | Afternoons | Admissions open ? call: 0123-456789</div>
+      </div>
+    </div>
+  </section>
+
+  <script>
+    /* -------------------------
+       Simple particle background
+       ------------------------- */
+    const canvas = document.getElementById('bg');
+    const ctx = canvas.getContext('2d');
+    let w = canvas.width = innerWidth;
+    let h = canvas.height = innerHeight;
+
+    window.addEventListener('resize', ()=>{w=canvas.width=innerWidth;h=canvas.height=innerHeight;init()});
+
+    const opts = {
+      particleCount: Math.round((w*h)/50000),
+      maxRadius: 2.2,
+      speed: 0.4,
+      lineDistance: 140
+    }
+
+    let particles = [];
+
+    function rand(min,max){return Math.random()*(max-min)+min}
+    function distance(a,b){return Math.hypot(a.x-b.x,a.y-b.y)}
+
+    class Particle{
+      constructor(){
+        this.reset();
+      }
+      reset(){
+        this.x = Math.random()*w;
+        this.y = Math.random()*h;
+        this.vx = (Math.random()-0.5)*opts.speed;
+        this.vy = (Math.random()-0.5)*opts.speed;
+        this.r = Math.random()*opts.maxRadius + 0.6;
+        this.alpha = rand(0.3,0.95);
+      }
+      step(){
+        this.x += this.vx; this.y += this.vy;
+        if(this.x < -10 || this.x > w+10 || this.y < -10 || this.y > h+10) this.reset();
+      }
+      draw(){
+        ctx.beginPath();ctx.arc(this.x,this.y,this.r,0,Math.PI*2);ctx.fillStyle = 'rgba(255,255,255,'+this.alpha+')';ctx.fill();
+      }
+    }
+
+    function init(){
+      particles = [];
+      const count = Math.max(20, opts.particleCount);
+      for(let i=0;i<count;i++) particles.push(new Particle());
+    }
+
+    function step(){
+      ctx.clearRect(0,0,w,h);
+      // subtle gradient overlay
+      const g = ctx.createLinearGradient(0,0,w,h);
+      g.addColorStop(0,'rgba(2,6,23,0.6)');
+      g.addColorStop(1,'rgba(7,16,41,0.45)');
+      ctx.fillStyle = g;
+      ctx.fillRect(0,0,w,h);
+
+      // draw lines
+      for(let i=0;i<particles.length;i++){
+        const p = particles[i];
+        p.step();p.draw();
+        for(let j=i+1;j<particles.length;j++){
+          const q = particles[j];
+          const d = distance(p,q);
+          if(d < opts.lineDistance){
+            const a = (1 - d/opts.lineDistance) * 0.9;
+            ctx.beginPath();ctx.moveTo(p.x,p.y);ctx.lineTo(q.x,q.y);
+            ctx.strokeStyle = 'rgba(140,170,255,'+ (a*0.12) +')';
+            ctx.lineWidth = 1;ctx.stroke();
+          }
+        }
+      }
+
+      window.requestAnimationFrame(step);
+    }
+
+    init();step();
+
+    /* -------------------------
+       Small accessibility: stop animation when user prefers reduced motion
+       ------------------------- /
+    const mq = window.matchMedia('(prefers-reduced-motion: reduce)');
+    if(mq.matches){
+      // stop the animation loop by removing animation frames and reduce canvas updates
+      canvas.style.opacity = 0.85;
+    }
+
+    /* -------------------------
+       Optional extra: reveal typing text (already animated via CSS)
+       ------------------------- */
+    // If you want the typed text to change after load, you can alter #typed's text here
+    // Example: change message after 4 seconds
+    setTimeout(()=>{
+      const el = document.getElementById('typed');
+      if(!el) return;
+      // simple fade-out and change
+      el.style.transition = 'opacity .5s'; el.style.opacity = 0;
+      setTimeout(()=>{el.textContent = 'Thanks For Watching.'; el.style.opacity = 1;},600);
+    },4000);
+
+  </script>
+
+
+</body></html>
