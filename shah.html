@@ -1,0 +1,304 @@
+
+
+
+
+<!doctype html>
+<html lang="ur" dir="lrt">
+<head>
+  <meta charset="utf-8" />
+  <meta name="Welcome to our website" content="width=device-width, initial-scale=1" />
+  <title>Welcome to our Website</title>
+  <meta name="Wel come to our website" content="Welcome to our? website"/>
+  <meta name="theme-color" content="#0ea5e9" />
+  <style>
+    /* ====== Base / Reset ====== */
+    *,*::before,*::after{box-sizing:border-box}
+    html,body{margin:0;padding:0}
+    body{
+      font-family: system-ui, -apple-system, Segoe UI, Roboto, "English", "Noto Nastaliq Urdu", Arial, sans-serif;
+      color:#0f172a; background:#f8fafc; line-height:1.6;
+    }
+    a{color:inherit; text-decoration:none}
+    img{max-width:100%; display:block}
+    :root{
+      --bg:#f8fafc;
+      --card:#ffffff;
+      --muted:#64748b;
+      --primary:#0ea5e9;
+      --primary-600:#0284c7;
+      --ring: 0 0 0 3px rgba(14,165,233,.25);
+      --shadow: 0 10px 30px rgba(2,8,23,.08);
+      --radius:14px;
+    }
+
+    /* ====== Layout ====== */
+    .container{width:min(1100px, 92%); margin-inline:auto}
+
+    /* ====== Nav ====== */
+    header{
+      position:sticky; top:0; z-index:50; background:rgba(248,250,252,.8);
+      backdrop-filter:saturate(180%) blur(12px); border-bottom:1px solid #e2e8f0;
+    }
+    .nav{display:flex; align-items:center; justify-content:space-between; padding:14px 0}
+    .brand{display:flex; align-items:center; gap:.6rem; font-weight:800}
+    .logo{
+      width:38px; height:38px; border-radius:10px; background:linear-gradient(135deg,#38bdf8,#0ea5e9);
+      display:grid; place-items:center; color:white; font-weight:900; box-shadow: var(--shadow);
+    }
+    .nav ul{display:flex; gap:1rem; list-style:none; margin:0; padding:0}
+    .nav a{padding:.55rem .9rem; border-radius:10px; color:#0f172a; font-weight:600}
+    .nav a:hover{background:#e2f3fb}
+    .menu-btn{display:none; border:0; background:transparent; font-size:1.4rem}
+
+    /* ====== Hero ====== */
+    .hero{padding:64px 0 32px}
+    .hero-card{
+      background:var(--card); border-radius:var(--radius); padding:28px; box-shadow:var(--shadow);
+      display:grid; grid-template-columns: 1.2fr .8fr; gap:24px; align-items:center;
+    }
+    .badge{display:inline-flex; align-items:center; gap:.4rem; color:#0369a1; background:#e0f2fe; padding:.25rem .6rem; border-radius:999px; font-size:.9rem}
+    .title{font-size:clamp(1.6rem, 3vw + 1rem, 2.4rem); margin:.3rem 0 .6rem}
+    .subtitle{color:var(--muted); margin:0 0 1rem}
+    .cta{display:flex; gap:.6rem; flex-wrap:wrap}
+    .btn{
+      display:inline-flex; align-items:center; gap:.5rem; padding:.7rem 1rem; border-radius:12px; font-weight:700; border:1px solid transparent; cursor:pointer;
+    }
+    .btn.primary{background:var(--primary); color:white}
+    .btn.primary:hover{background:var(--primary-600)}
+    .btn.ghost{background:white; border-color:#e2e8f0}
+    .btn.ghost:hover{background:#f1f5f9}
+    .hero img{border-radius:12px}
+
+    /* ====== Sections ====== */
+    section{padding:32px 0}
+    .section-title{font-size:1.4rem; margin-bottom:8px}
+    .section-sub{color:var(--muted); margin-top:0}
+
+    .grid-3{display:grid; grid-template-columns: repeat(3, 1fr); gap:16px}
+    .card{background:var(--card); border-radius:16px; padding:18px; box-shadow:var(--shadow); height:100%}
+    .card h3{margin-top:0}
+    .muted{color:var(--muted)}
+
+    /* ====== Portfolio ====== */
+    .portfolio{display:grid; grid-template-columns: repeat(3, 1fr); gap:16px}
+    .work{background:var(--card); border-radius:16px; overflow:hidden; box-shadow:var(--shadow)}
+    .work .meta{padding:12px 14px}
+
+    /* ====== Contact ====== */
+    .contact-wrap{
+      display:grid; grid-template-columns: 1fr 1fr; gap:16px;
+      background:var(--card); border-radius:16px; padding:18px; box-shadow:var(--shadow)
+    }
+    label{font-weight:700; display:block; margin:.4rem 0}
+    input, textarea{
+      width:100%; padding:.7rem .8rem; border:1px solid #e2e8f0; border-radius:12px; background:#ffffff;
+      outline:none; font:inherit;
+    }
+    input:focus, textarea:focus{box-shadow: var(--ring); border-color:#7dd3fc}
+    textarea{min-height:120px; resize:vertical}
+
+    /* ====== Footer ====== */
+    footer{padding:28px 0 60px; color:var(--muted); text-align:center}
+    .whatsapp-fab{
+      position:fixed; inset-inline-start:16px; inset-block-end:16px; z-index:60;
+      background:#25D366; color:white; border-radius:999px; padding:.9rem 1rem; display:flex; gap:.5rem; align-items:center; box-shadow:var(--shadow)
+    }
+
+    /* ====== Responsive ====== */
+    @media (max-width: 900px){
+      .hero-card{grid-template-columns:1fr}
+      .portfolio{grid-template-columns:1fr 1fr}
+      .grid-3{grid-template-columns:1fr 1fr}
+      .contact-wrap{grid-template-columns:1fr}
+    }
+    @media (max-width: 640px){
+      .nav ul{display:none}
+      .menu-btn{display:block}
+      .portfolio{grid-template-columns:1fr}
+      .grid-3{grid-template-columns:1fr}
+    }
+    /* Simple show/hide for mobile menu */
+    .mobile-open .nav ul{display:flex; flex-direction:column; gap:.4rem; padding:10px 0}
+  </style>
+</head>
+<body>
+  <!-- ====== Header / Nav ====== -->
+  <header>
+    <div class="container nav" aria-label="This websit is made of waseem">
+      <div class="brand">
+        <div class="logo" aria-hidden="false">Waseem</div>
+        <span>khan</span>
+      </div>
+      <button class="menu-btn" id="menuBtn" aria-label="Waseem">Waseem </button>
+      <ul>
+        <li><a href="Arjuna 2023.mp4">Services</a></li>
+        <li><a href="#work">Work</a></li>
+        <li><a href="#about">about </a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </div>
+  </header>
+
+  <!-- ====== Hero ====== -->
+  <main class="container">
+    <section class="hero">
+      <div class="hero-card">
+        <div>
+          <span class="badge"><font face="Oblique">This Website is making of waseem</font></span>
+         <center> <h1 class="title">Welcome to our Website</h1> </center>
+          <p class="subtitle">i need for hard work</p>
+
+          <div class="cta">
+         <a class="btn primary" href="#contact">Sign up </a>
+            <a class="btn ghost" href=" #vist">visit</a>
+          </div>
+
+        </div>
+        <video src="" alt="">
+      </div>
+    </section>
+
+    <!-- ====== Services ====== -->
+    <section id="services">
+      <h2 class="section-title">Intoduction</h2>
+      <p class="section-sub">visit our website</p>
+      <div class="grid-3">
+        <div class="card">
+          <h3>Basic</h3>
+          <img src="khan.png"height="150px"><p class="muted">Class 1 to 10/Best schools</p>
+        </div>
+        <div class="card">
+       <a href="waseem.html"><h3>Intoduction</h3>
+             <img src="g.png"><p class="muted">Hard work/unity/Faith</p></a>
+        </div>
+        <div class="card">
+          <h3>computer</h3>
+          <img src="hg.png"height="150px">  <p class="muted">C.I.T/basic</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ====== Portfolio ====== -->
+    <section id="work">
+      <h2 class="section-title">???? ?????</h2>
+      <p class="section-sub">??? ????? ????????</p>
+      <div class="portfolio">
+        <article class="work">
+          <img src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?q=80&w=1200&auto=format&fit=crop" alt="Strong">
+          <div class="meta">
+            <strong>???????? ??? ????</strong>
+            <p class="muted">???????? ?????? ??? ? ???? ??? ?????? ?? ?????</p>
+          </div>
+        </article>
+        <article class="work">
+          <img src="" alt="???? 2">
+          <div class="meta">
+            <strong>??-????? ?????</strong>
+            <p class="muted">?? ????? ?? ???? ???? ? ?????? ???? ???????</p>
+          </div>
+        </article>
+        <article class="work">
+          <img src="" alt="???? 3">
+          <div class="meta">
+            <strong>???? ????? ????</strong>
+            <p class="muted">???????? ?? ??? ???? ??? ?????? ??????</p>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- ====== About ====== -->
+    <section id="about">
+      <h2 class="section-title">???? ???? ???</h2>
+      <p class="section-sub">????? ?????</p>
+      <div class="card">
+        <p>????! ??? <strong>?? ?? ???</strong>? ??? ??? ??????/??????? ???? 5+ ??? ?? ?????? ?????? ?????? ????????? ??????? ?? ????? ???? ?? ???? ??? ?????? ?? ???? ????/???? ????</p>
+        <ul>
+          <li>??? ?????: HTML, CSS, JS, React, Node</li>
+          <li>????: ????????? ??????????? ??? ??????? UI</li>
+          <li>??????/???? ???: PK/Remote</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- ====== Contact ====== -->
+    <section id="contact">
+      <h2 class="section-title">Contact</h2>
+      <p class="section-sub">???? ????? ?? ???? ??? ?? ???? ????</p>
+      <div class="contact-wrap">
+        <form id="contactForm" novalidate>
+          <label for="Emp Name">Name</label>
+          <input id="Emp Name" name="Emp Name" placeholder="Enter your name" required />
+
+          <label for="email">Email</label>
+          <input id="email" name="email" type="email" placeholder="name@example.com" required />
+
+          <label for="msg">Message</label>
+          <textarea id="Description" name="Description" placeholder="" required></textarea>
+
+          <button class="btn primary" type="">Submit</button>
+          <p id="formNote" class="muted" aria-live="polite" style="margin:.6rem 0 0"></p>
+        </form>
+
+        <div class="card">
+          <h3>?????? ?????</h3>
+          <p>???? ??? ?? ????? ??? ?????? ?? ???:</p>
+          <a class="btn ghost" id="waBtn" href="#" target="_blank" rel="noopener"> WhatsApp </a>
+          <p class="muted" style="margin-top:.6rem">please to our contact</p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+     <span id="year">2025</span>
+  </footer>
+
+  <!-- WhatsApp Floating Button -->
+  <a class="whatsapp-fab" id="waFab" href="#" target="_blank" rel="noopener" aria-label=""> WhatsApp</a>
+
+  <script>
+    // ====== Mobile menu toggle ======
+    const menuBtn = document.getElementById('menuBtn');
+    menuBtn?.addEventListener('click', () => {
+      document.documentElement.classList.toggle('mobile-open');
+    });
+
+    // ====== Year auto ======
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    // ====== Contact form (front-end only) ======
+    const form = document.getElementById('contactForm');
+    const note = document.getElementById('formNote');
+
+    form?.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const data = Object.fromEntries(new FormData(form).entries());
+
+      // Simple validation
+      if(!data.name || !data.email || !data.message){
+        note.textContent = '???? ??????? ???? ????? ??? ?????';
+        note.style.color = '#b91c1c';
+        return;
+      }
+      if(!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(data.email)){
+        note.textContent = '?? ??? ???? ???? ???';
+        note.style.color = '#b91c1c';
+        return;
+      }
+
+      // Demo success (hook to backend/API here)
+      note.textContent = 'khan';
+      note.style.color = '#065f46';
+      form.reset();
+    });
+
+    // ====== WhatsApp link (replace number below) ======
+    const WHATSAPP_NUMBER = '923001234567'; // ??? ?????? ????? ??? ?? ???? (???????: 92)
+    const waText = encodeURIComponent('????! ???? ?? ?? ????? ????? ????');
+    const waLink = `https://wa.me/${WHATSAPP_NUMBER}?text=${waText}`;
+    document.getElementById('waBtn').href = waLink;
+    document.getElementById('waFab').href = waLink;
+  </script>
+</body>
+</html>
